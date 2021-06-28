@@ -1,1 +1,0 @@
-<title>("Harry Potter 1 - Harry Potter and the Sorcerer's Stone", {})</title><creator>('Rowling, J.K.', {'{http://www.idpf.org/2007/opf}file-as': 'J.K., Rowling,', '{http://www.idpf.org/2007/opf}role': 'aut'})</creator>
