@@ -1,0 +1,9 @@
+os
+bs4
+re
+json
+nltk
+textblob_de
+nltk
+pandas
+sklearn
