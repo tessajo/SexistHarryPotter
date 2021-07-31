@@ -20,9 +20,14 @@ def getNames():
             text = f.read().replace('\xad','')
             d = json.loads(text)
             ex = d.keys()
-    # Dateien auslesen
-    with open(os.path.join('Data','REFINED','master.txt'),'r',encoding='utf-8') as f:
-        text = f.read().replace('\xad','') # TODO test this!
+    # Dateidirectory auslesen. Iterieren über Dateien
+    files = os.listdir('Data\REFINED')
+    for i in range(0,len(files)):
+        # Dateien auslesen
+        with open(os.path.join('Data','REFINED',files[i]),'r',encoding='utf-8') as f:
+    # # Dateien auslesen
+    # with open(os.path.join('Data','REFINED','master.txt'),'r',encoding='utf-8') as f:
+            text = f.read().replace('\xad','') # TODO test this!
     # Named Entities erzeugen
     entities = dc.getNamedEntities(text)
     # Über Entities iterieren, um Entities den Dictionaries zuzuordnen

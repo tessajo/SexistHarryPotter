@@ -80,7 +80,7 @@ def cleanData(text): # TODO
     # Cornelius Fudge
     text = re.sub("[\s,.!?]CORNELIUS[\s,.!?]"," Cornelius ",text)
     # Cormac MacLaggen
-    text = re.sub("[\s,.!?]McLag[\s,.!?]"," McLaggan ",text)
+    text = re.sub("[\s,.!?]McLag[\s,.!?]"," McLaggen ",text)
     # Crabbe
     text = re.sub("[\s,.!?]Crabbes[\s,.!?]"," Crabbe ",text)
     # D
@@ -89,17 +89,17 @@ def cleanData(text): # TODO
     # Dobby
     text = re.sub("[\s,.!?]DOB[\s,.!?]"," Dobby ",text)
     text = re.sub("[\s,.!?]DOBBY[\s,.!?]"," Dobby ",text)
-    text = re.sub("[\s,.!?]ofDobbys[\s,.!?]"," osf obby ",text)
+    text = re.sub("[\s,.!?]ofDobbys[\s,.!?]"," Dobby ",text)
     # Dolores Umbridge
+    text = re.sub("[\s,.!?]UMBRIDGE[\s,.!?]"," Umbridge ",text)
     text = re.sub("[\s,.!?]Umbridges[\s,.!?]"," Umbridge ",text)
     text = re.sub("[\s,.!?]Umbndges[\s,.!?]"," Umbridge ",text)
-    text = re.sub("[\s,.!?]UMBRIDGE[\s,.!?]"," Umbridge ",text)
     text = re.sub("[\s,.!?]DoloresT[\s,.!?]"," Dolores ",text)
     # Dursleys
+    text = re.sub("[\s,.!?]DURSLEY[\s,.!?]"," Dursley ",text)
     text = re.sub("[\s,.!?]Dursleys[\s,.!?]|"," Dursley ",text)
     text = re.sub("[\s,.!?]Dursleyish[\s,.!?]|"," Dursley ",text)
     text = re.sub("[\s,.!?]DURSLEYS[\s,.!?]"," Dursley ",text)
-    text = re.sub("[\s,.!?]DURSLEY[\s,.!?]"," Dursley ",text)
     text = re.sub("[\s,.!?]Duddy[\s,.!?]"," Dudley ",text)
     text = re.sub("[\s,.!?]Dud[\s,.!?]"," Dudley ",text)
     text = re.sub("[\s,.!?]Diddy[\s,.!?]"," Dudley ",text)
@@ -141,8 +141,8 @@ def cleanData(text): # TODO
     # Gregorovitch
     text = re.sub("[\s,.!?]Gregorowitch[\s,.!?]"," Gregorovitch ",text)
     # Gründer
-    text = re.sub("[\s,.!?]GRYFFINDORS[\s,.!?]"," Gryffindor ",text)
     text = re.sub("[\s,.!?]GRYFFINDOR[\s,.!?]"," Gryffindor ",text)
+    text = re.sub("[\s,.!?]GRYFFINDORS[\s,.!?]"," Gryffindor ",text)
     text = re.sub("[\s,.!?]Gryffindors[\s,.!?]"," Gryffindor ",text)
     text = re.sub("[\s,.!?]Gryffiindor[\s,.!?]"," Gryffindor ",text)
     text = re.sub("[\s,.!?]Gryffmdor[\s,.!?]"," Gryffindor ",text)
@@ -160,9 +160,9 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]POTTER[\s,.!?]"," Potter ",text)
     text = re.sub("[\s,.!?]Potters[\s,.!?]"," Potter ",text)
     text = re.sub("[\s,.!?]PPPotter[\s,.!?]"," Potter ",text)
+    text = re.sub("[\s,.!?]HARRY[\s,.!?]"," Harry ",text)
     text = re.sub("[\s,.!?]Harrys[\s,.!?]"," Harry ",text)
     text = re.sub("[\s,.!?]Arry[\s,.!?]"," Harry ",text)
-    text = re.sub("[\s,.!?]HARRY[\s,.!?]"," Harry ",text)
     text = re.sub("[\s,.!?]UNDESIRABLE[\s,.!?]"," Harry ",text)
     text = re.sub("[\s,.!?]Undesirable[\s,.!?]"," Harry ",text)
     text = re.sub("[\s,.!?]'arry[\s,.!?]"," Harry ",text)
@@ -213,13 +213,13 @@ def cleanData(text): # TODO
     # Lavender Brown
     text = re.sub("[\s,.!?]postLavender[\s,.!?]"," post Lavender ",text)
     # Lord Voldemort. Tom Riddle
+    text = re.sub("[\s,.!?]VOLDEMORT[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]Vol[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]Vodlemort[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]Voldemorts[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]VoldemortT[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]Voldemord[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]Voldy[\s,.!?]"," Voldemort ",text)
-    text = re.sub("[\s,.!?]VOLDEMORT[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]TOM[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]RIDDLE[\s,.!?]"," Voldemort ",text)
     text = re.sub("[\s,.!?]Riddles[\s,.!?]"," Voldemort ",text)
@@ -397,7 +397,7 @@ def getNamedEntities(text):
 def getTextfromHTML():
     # Dateidirectory auslesen. Iterieren über Dateien
     files = os.listdir('Data\RAW')
-    for i in range(0,len(files)):
+    for i in range(1,len(files)):
         # Dateien auslesen
         with open(os.path.join('Data','RAW',files[i]),'r',encoding='utf-8') as f:
             raw = f.read()
@@ -413,7 +413,7 @@ def getTextfromHTML():
 
 def createMasterText():
     # Refined Dateidirectory auslesen. Iterieren über Dateien
-    files = os.listdir('Data\REFINED')#
+    files = os.listdir('Data\REFINED')
     text = ''
     for i in range(0,len(files)):
         # Dateien auslesen
