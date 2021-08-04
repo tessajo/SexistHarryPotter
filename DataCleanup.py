@@ -23,7 +23,10 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Dumbkdore[\s,.!?]*"," Dumbledore ",text)
     text = re.sub("[\s,.!?]*Dumbiedore[\s,.!?]*"," Dumbledore ",text)
     text = re.sub("[\s,.!?]*Dumbiedorf[\s,.!?]*"," Dumbledore ",text)
+    text = re.sub("[\s,.!?]*Dumbledorf[\s,.!?]*"," Dumbledore ",text)
+    text = re.sub("[\s,.!?]*Durnbledore[\s,.!?]*"," Dumbledore ",text)
     text = re.sub("[\s,.!?]*Dumbledoiv[\s,.!?]*"," Dumbledore ",text)
+    text = re.sub("[\s,.!?]*Headmasters[\s,.!?]*"," Headmaster ",text)
     # Allgemein
     text = re.sub("[\s,.!?]*GENTLEMEN[\s,.!?]*"," gentlemen ",text)
     text = re.sub("[\s,.!?]*SIR[\s,.!?]*"," sir ",text)
@@ -45,10 +48,15 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Ohrightyeah[\s,.!?]*"," Oh right yeah ",text)
     text = re.sub("AlTeddy*","Albus Teddy",text)
     text = re.sub("[\s,.!?]*DAD[\s,.!?]*"," Dad ",text)
+    text = re.sub("[\s,.!?]*HE[\s,.!?]*"," He ",text)
+    text = re.sub("Healers"," Healers ",text)
+    text = re.sub("him...and"," him and ",text)
     # Angelina Johnson
     text = re.sub("[\s,.!?]*Angelinas'[\s,.!?]*"," Angelina ",text)
+    text = re.sub("[\s,.!?]*Angelinas[\s,.!?]*"," Angelina ",text)
     # Argus Filch
     text = re.sub("[\s,.!?]*Filchs'[\s,.!?]*"," Filch ",text)
+    text = re.sub("[\s,.!?]*Filchs[\s,.!?]*"," Filch ",text)
     # Aragog
     text = re.sub("[\s,.!?]*Aragogs[\s,.!?]*"," Aragog ",text)
     text = re.sub("[\s,.!?]*Aragog.[\s,.!?]*"," Aragog ",text)
@@ -74,6 +82,9 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*CHOSEN[\s,.!?]*"," Chosen ",text)
     # Cedric Diggory
     text = re.sub("Ced[\s,.!?]+","Cedric",text)
+    text = re.sub("CedricI","Cedric I",text)
+    text = re.sub("Cedricthat","Cedric that",text)
+    text = re.sub("CedricBeaten","Cedric Beaten",text)
     # Celestina Warbeck
     text = re.sub("[\s,.!?]*Celestinas[\s,.!?]*"," Celestina ",text)
     # Cole
@@ -82,10 +93,16 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Colon[\s,.!?]*"," Colin ",text)
     # Cornelius Fudge
     text = re.sub("[\s,.!?]*CORNELIUS[\s,.!?]*"," Cornelius ",text)
+    text = re.sub("Cornelius."," Cornelius ",text)
+    text = re.sub("Fudges","Fudge",text)
     # Cormac MacLaggen
     text = re.sub("[\s,.!?]*McLag[\s,.!?]*"," McLaggen ",text)
     # Crabbe
     text = re.sub("[\s,.!?]*Crabbes[\s,.!?]*"," Crabbe ",text)
+    # Crouch
+    text = re.sub("Barry","Barty",text)
+    text = re.sub("Bartys","Barty",text)
+    text = re.sub("CROUCH","Crouch",text)
     # D
     # Davies
     text = re.sub("[\s,.!?]*Davey[\s,.!?]*"," Davies ",text)
@@ -99,15 +116,18 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*UMBRIDGE[\s,.!?]*"," Umbridge ",text)
     text = re.sub("[\s,.!?]*Umbridges[\s,.!?]*"," Umbridge ",text)
     text = re.sub("[\s,.!?]*Umbndges[\s,.!?]*"," Umbridge ",text)
+    text = re.sub("[\s,.!?]*Umbndge[\s,.!?]*"," Umbridge ",text)
     text = re.sub("[\s,.!?]*DoloresT[\s,.!?]*"," Dolores ",text)
     # # Dursleys
-    # text = re.sub("[\s,.!?]*DURSLEY[\s,.!?]*"," Dursley ",text)
-    # text = re.sub("[\s,.!?]*Dursleys[\s,.!?]*|"," Dursley ",text)
-    # text = re.sub("[\s,.!?]*Dursleyish[\s,.!?]*|"," Dursley ",text)
-    # text = re.sub("[\s,.!?]*DURSLEYS[\s,.!?]*"," Dursley ",text)
+    text = re.sub("[\s,.!?]*DURSLEY[\s,.!?]*"," Dursley ",text)
+    text = re.sub("[\s,.!?]*Dursleys[\s,.!?]*"," Dursley ",text)
+    text = re.sub("[\s,.!?]*Dursleyish[\s,.!?]*"," Dursley ",text)
+    text = re.sub("[\s,.!?]*DURSLEYS[\s,.!?]*"," Dursley ",text)
     text = re.sub("[\s,.!?]*DUDLEY[\s,.!?]*"," Dudley ",text)
     text = re.sub("[\s,.!?]*Duddy[\s,.!?]*"," Dudley ",text)
     text = re.sub("Dud[\s\n,.!?]+","Dudley",text)
+    text = re.sub("Dudleythat","Dudley that",text)
+    text = re.sub("DudleyBut","Dudley but",text)
     text = re.sub("[\s,.!?]*Diddy[\s,.!?]*"," Dudley ",text)
     text = re.sub("[\s,.!?]*Diddykins[\s,.!?]*"," Dudley ",text)
     text = re.sub("[\s,.!?]*Dudders[\s,.!?]*"," Dudley ",text)
@@ -138,6 +158,7 @@ def cleanData(text): # TODO
     # Gilderoy
     text = re.sub("[\s,.!?]*GILDEROY[\s,.!?]*"," Gilderoy ",text)
     text = re.sub("[\s,.!?]*Gilderoys[\s,.!?]*"," Gilderoy ",text)
+    text = re.sub("[\s,.!?]*Lockharts[\s,.!?]*"," Lockhart ",text)
     # Gornuk
     text = re.sub("[\s,.!?]*Gornuk.[\s,.!?]*"," Gornuk ",text)
     # Grawp
@@ -161,6 +182,7 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*SLYTHERIN[\s,.!?]*"," Slytherin ",text)
     text = re.sub("[\s,.!?]*SLYTHERINS[\s,.!?]*"," Slytherin ",text)
     text = re.sub("[\s,.!?]*Slytherins[\s,.!?]*"," Slytherin ",text)
+    text = re.sub("[\s,.!?]*Slytherm[\s,.!?]*"," Slytherin ",text)
     # Goyles
     text = re.sub("[\s,.!?]*Goyles[\s,.!?]*"," Goyle ",text)
     # H
@@ -193,6 +215,7 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Harry ew[\s,.!?]*"," Harry knew ",text)
     text = re.sub("[\s,.!?]*Harry uld[\s,.!?]*"," Harry could ",text)
     text = re.sub("[\s,.!?]*Harry lt[\s,.!?]*"," Harry felt ",text)
+    text = re.sub("[\s,.!?]*HarryZey[\s,.!?]*"," Harry Zey ",text)
     text = re.sub("[\s,.!?]*remember…Harry[\s,.!?]*"," remember Harry ",text)
     text = re.sub("[\s,.!?]*Hogwarts…Harry[\s,.!?]*"," Hogwarts Harry ",text)
     text = re.sub("[\s,.!?]*Harry...and[\s,.!?]*"," Harry and ",text)
@@ -206,9 +229,14 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Hedwigs[\s,.!?]*"," Hedwig ",text)
     # Hermione Granger
     text = re.sub("[\s,.!?]*HERMIONE[\s,.!?]*"," Hermione ",text)
+    text = re.sub("[\s,.!?]*Hermiones[\s,.!?]*"," Hermione ",text)
     text = re.sub("[\s,.!?]*Herrmone[\s,.!?]*"," Hermione ",text)
+    text = re.sub("[\s,.!?]*Herbione[\s,.!?]*"," Hermione ",text)
     text = re.sub("[\s,.!?]*Harmione[\s,.!?]*"," Hermione ",text)
+    text = re.sub("[\s,.!?]*Hermoine[\s,.!?]*"," Hermione ",text)
     text = re.sub("[\s,.!?]*Ermynee[\s,.!?]*"," Hermione ",text)
+    text = re.sub("[\s,.!?]*Hermy[\s,.!?]*"," Hermione ",text)
+    text = re.sub("[\s,.!?]*Grangers[\s,.!?]*"," Granger ",text)
     # Hepzibah
     text = re.sub("[\s,.!?]*Hepzibah[\s,.!?]*"," Hermione ",text)
     # Horace Slughorn
@@ -225,6 +253,8 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Karkaroffs[\s,.!?]*"," Karkaroff ",text)
     # K
     # Kingsley Shaklebolt
+    text = re.sub("[\s,.!?]*Kmgsley[\s,.!?]*"," Kingsley ",text)
+    # Kreacher
     text = re.sub("[\s,.!?]*Kmgsley[\s,.!?]*"," Kingsley ",text)
     # L
     # Lavender Brown
@@ -246,7 +276,7 @@ def cleanData(text): # TODO
     # Luna Lovegood
     text = re.sub("[\s,.!?]*Loony[\s,.!?]*"," Luna ",text)
     text = re.sub("[\s,.!?]*Looooony[\s,.!?]*"," Luna ",text)
-    text = re.sub("[\s,.!?]*Lovegood[\s,.!?]*"," Lovegoods ",text)
+    text = re.sub("[\s,.!?]*Lovegoods[\s,.!?]*"," Lovegoods ",text)
     # M
     # MadEye Moody
     text = re.sub("[\s,.!?]*Moodys[\s,.!?]*"," Moody ",text)
@@ -258,6 +288,7 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Siriuss[\s,.!?]*"," Sirius ",text)
     text = re.sub("[\s,.!?]*Sirius...[\s,.!?]*"," Sirius ",text)
     text = re.sub("[\s,.!?]*Sirius...and[\s,.!?]*"," Sirius and ",text)
+    text = re.sub("[\s,.!?]*Sirius.[\s,.!?]*"," Sirius ",text)
     text = re.sub("[\s,.!?]*Blacks[\s,.!?]*"," Black ",text)
     text = re.sub("[\s,.!?]*Snuffles[\s,.!?]*"," Sirius ",text)
     text = re.sub("[\s,.!?]*Wormy[\s,.!?]*"," Peter ",text)
@@ -285,6 +316,8 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*McGonagalls[\s,.!?]*"," McGonagall ",text)
     # Mundungus Fletcher
     text = re.sub("[\s,.!?]*MUNDUNGUS[\s,.!?]*"," Mundungus ",text)
+    # Muggle
+    text = re.sub("[\s,.!?]*Mugg[\s,.!?]*"," Muggle ",text)
     # Myrtle
     text = re.sub("[\s,.!?]*Myrtles[\s,.!?]*"," Myrtle ",text)
     # N
@@ -326,6 +359,7 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Professorhead[\s,.!?]*"," Professor head ",text)
     text = re.sub("[\s,.!?]*Professer[\s,.!?]*"," Professor ",text)
     text = re.sub("[\s,.!?]*Professors[\s,.!?]*"," Professor ",text)
+    text = re.sub("[\s,.!?]*Professot[\s,.!?]*"," Professor ",text)
     # R
     # Regulus Black
     text = re.sub("[\s,.!?]*Reg[\s\n,.!?]+"," Regulus ",text)
@@ -340,6 +374,7 @@ def cleanData(text): # TODO
     text = re.sub("Hag[\s\n,.!?]+","Hagrid",text)
     text = re.sub("[\s,.!?]*Hagrids[\s,.!?]*"," Hagrid ",text)
     text = re.sub("[\s,.!?]*Hagridr[\s,.!?]*"," Hagrid ",text)
+    text = re.sub("[\s,.!?]*Hagtid[\s,.!?]*"," Hagrid ",text)
     # S
     # Seamus Finnigan
     text = re.sub("[\s,.!?]*Seamuss[\s,.!?]*"," Seamus ",text)
@@ -348,10 +383,12 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*Sev[\s\n,.!?]+"," Severus ",text)
     text = re.sub("[\s,.!?]*Sanpe[\s,.!?]*"," Snape ",text)
     text = re.sub("[\s,.!?]*Snapes[\s,.!?]*"," Snape ",text)
+    text = re.sub("[\s,.!?]*Snape.[\s,.!?]*"," Snape ",text)
     text = re.sub("[\s,.!?]*Snivdlus[\s,.!?]*"," Snape ",text)
     text = re.sub("[\s,.!?]*Snivellus[\s,.!?]*"," Snape ",text)
     text = re.sub("[\s,.!?]*Snivelly[\s,.!?]*"," Snape ",text)
     text = re.sub("[\s,.!?]*Sn[\s\n,.!?]+"," Snape ",text)
+    text = re.sub("[\s,.!?]*Snap[\s\n,.!?]+"," Snape ",text)
     # She
     text = re.sub("[\s,.!?]*SHE[\s,.!?]*"," She ",text)
     # Snatcher
@@ -361,6 +398,8 @@ def cleanData(text): # TODO
     # Sybill Trelawney
     text = re.sub("[\s,.!?]*Trelawneys[\s,.!?]*"," Trelawney ",text)
     text = re.sub("[\s,.!?]*Sybi[\s\n,.!?]+"," Sybill ",text)
+    # Squib
+    text = re.sub("[\s,.!?]*Squibs[\s,.!?]*"," Squibs ",text)
     # T
     # Troy
     text = re.sub("[\s,.!?]*TROY[\s,.!?]*"," Troy ",text)
@@ -368,6 +407,7 @@ def cleanData(text): # TODO
     text = re.sub("[\s,.!?]*ALECTO[\s,.!?]*"," Alecto ",text)
     text = re.sub("[\s,.!?]*ROOKWOOD[\s,.!?]*"," Rookwood ",text)
     text = re.sub("[\s,.!?]*Macnairs[\s,.!?]*"," Macnair ",text)
+    text = re.sub("[\s,.!?]*Eaters[\s,.!?]*"," Eater ",text)
     # W
     # Weasleys
     text = re.sub("[\s,.!?]*Ronnie[\s,.!?]*"," Ron ",text)
@@ -405,6 +445,7 @@ def cleanData(text): # TODO
     # V
     # Viktor Krum
     text = re.sub("[\s,.!?]*KRUM[\s,.!?]*"," Krum ",text)
+    text = re.sub("[\s,.!?]*Vicky[\s,.!?]*"," Viktor ",text)
     # X
     # Xenophilius Lovegood
     text = re.sub("[\s,.!?]*Xeno[\s,.!?]*"," Xenophilius ",text)
