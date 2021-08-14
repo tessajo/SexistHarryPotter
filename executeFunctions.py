@@ -7,7 +7,7 @@ import DataExtraction as de
 # dc.cleanData()
 # dc.getTextfromHTML()
 # dc.getNamedEntities(text)
-dc.createMasterText()
+# dc.createMasterText()
 
 # de.getNames()
 # de.getDescriptives()
