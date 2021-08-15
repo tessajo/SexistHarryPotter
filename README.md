@@ -5,6 +5,7 @@ The data basis is all seven Harry Potter in ebook-format.
 - [x] using ebooklib to get the raw text
 - [x] enrich file with meta data
 - [x] save text in html format in txt file
+- [x] define gitignore
 # Data Cleanup
 - [x] remove html markdown from the raw text using bs html parser
 - [x] remove hidden hyphen
@@ -26,4 +27,6 @@ The data basis is all seven Harry Potter in ebook-format.
 - [ ] sentence tokenizer to get individual sentences for the entire text
 # Analysis
 - [ ] tba
-- [ ]
+- [ ] werden die pos tags für die sätze richtig erzeugt
+- [ ] nicht nach pos tags, sondern nach wortlisten filtern
+- [ ] ngrams nach namen und männliche/weibliche namen filtern
