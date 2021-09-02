@@ -5,10 +5,10 @@ import DataExtraction as de
 # Ausführen von Funktionen
 
 # dc.cleanData()
-# dc.getTextfromHTML()
+dc.getTextfromHTML()
 # dc.getNamedEntities(text)
-# dc.createMasterText()
+dc.createMasterText()
 
-# de.getNames()
-# de.getDescriptives()
+de.getNames()
+de.getDescriptives()
 de.getSentences()
