@@ -38,7 +38,8 @@ def createwordmatrix(word,seq,lseq,unigram,i):
     return unigram
 
 # ngram-Funktion definieren
-def unigram(sents,punct):
+def unigram(sents):
+    punct = ['“','”','–','’','‘','—','…']
     unigram = [] # nur das Wort wird beachtet
     toktext = []
     for sentence in sents:
@@ -50,7 +51,8 @@ def unigram(sents,punct):
         toktext.append(sequence)
     return toktext,unigram
 
-def unigrammatrix(sents,punct):
+def unigrammatrix(sents):
+    punct = ['“','”','–','’','‘','—','…']
     unigram = []
     # toktext = []
     for sentence in sents:
@@ -70,27 +72,26 @@ def ngramfilter(unigram,all:bool,names:bool,ad:bool):
     unigramnames = []
     unigramad = []
     # POS Tags ermitteln
-    for sent in unigram:
-        sequence = [nltk.pos_tag(word) for word in sent]
-        if all==True:
-            for word in sequence:
-                if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']: # Nomen, Adverben, Adjektive
-                    unigramall.append(word[0])
-        if names==True:
-            names = []
-            with open(os.path.join('Data','pos','names.json'),'r',encoding='utf-8') as f:
-                content = f.read().replace('\xad','')
-                n = json.loads(content)
-                for key in n.keys():
-                    names.append(key)
-            for word in sequence:
-                if word[0] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word in names: # Adverben, Adjektive
-                    unigramnames.append(word[1])
-        if ad==True:
-            for word in sequence:
-                if word[0] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
-                    unigramad.append(word[1])
-        return unigramall,unigramnames,unigramad
+    sequence = nltk.pos_tag(unigram)
+    if all==True:
+        for word in sequence:
+            if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']: # Nomen, Adverben, Adjektive
+                unigramall.append(word[0])
+    if names==True:
+        names = []
+        with open(os.path.join('Data','pos','names.json'),'r',encoding='utf-8') as f:
+            content = f.read().replace('\xad','')
+            n = json.loads(content)
+            for key in n.keys():
+                names.append(key)
+        for word in sequence:
+            if word[0] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word in names: # Adverben, Adjektive
+                unigramnames.append(word[1])
+    if ad==True:
+        for word in sequence:
+            if word[0] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
+                unigramad.append(word[1])
+    return unigramall,unigramnames,unigramad
 
 def initngrams(unigram):
     # N-Grams
