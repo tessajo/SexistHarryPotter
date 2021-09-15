@@ -68,16 +68,16 @@ def unigrammatrix(sents):
 
 # ngram-Funktion mit POS definieren
 def ngramfilter(unigram,all:bool,names:bool,ad:bool):
-    unigramall = []
+    unigramall = ['Harry','Potter']
     unigramnames = []
     unigramad = []
     # POS Tags ermitteln
     sequence = nltk.pos_tag(unigram)
     if all==True:
         for word in sequence:
-            if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']: # Nomen, Adverben, Adjektive
+            if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']: # Nomen, Adverben, Adjektive
                 unigramall.append(word[0])
-    if names==True:
+    if names==True: 
         names = []
         with open(os.path.join('Data','pos','names.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
@@ -85,12 +85,12 @@ def ngramfilter(unigram,all:bool,names:bool,ad:bool):
             for key in n.keys():
                 names.append(key)
         for word in sequence:
-            if word[0] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word in names: # Adverben, Adjektive
-                unigramnames.append(word[1])
+            if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word in names: # Adverben, Adjektive
+                unigramnames.append(word[0])
     if ad==True:
         for word in sequence:
-            if word[0] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
-                unigramad.append(word[1])
+            if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
+                unigramad.append(word[0])
     return unigramall,unigramnames,unigramad
 
 def initngrams(unigram):
@@ -126,27 +126,25 @@ def initngrams(unigram):
     freq_six = nltk.FreqDist(sixgram)
 
     # print('freq_uni',freq_uni.most_common(100),'\n')
-    print('freq_bi',freq_bi.most_common(20),'\n')
-    print('freq_tri',freq_tri.most_common(20),'\n')
-    print('freq_four',freq_four.most_common(20),'\n')
-    print('freq_four',freq_five.most_common(20),'\n')
-    print('freq_four',freq_six.most_common(20),'\n')
+    # print('freq_bi',freq_bi.most_common(20),'\n')
+    # print('freq_tri',freq_tri.most_common(20),'\n')
+    # print('freq_four',freq_four.most_common(20),'\n')
+    # print('freq_five',freq_five.most_common(20),'\n')
+    # print('freq_six',freq_six.most_common(20),'\n')
+    return freq_uni
 
 def getwordfrequency(unigram): # TODO
     x = []
     y = []
-    # Filterwerte ermitteln
-    fv = getfiltervalues(1,0,0)
-    # Stopworte entfernen
-    unigram = removal(unigram,fv)
-    #Frequenz berechnen
-    freq_uni = nltk.FreqDist(unigram)
+    print(unigram)
     # Ergebnisse
-    print('freq_uni',freq_uni.most_common(100),'\n')
-    for tuple in freq_uni:
-        if freq_uni[tuple]>30:
-            x.append(tuple) 
-            y.append(freq_uni[tuple])
+    print('freq_uni',unigram.most_common(100),'\n')
+    tuple_gram = unigram.most_common(100)
+    for tuple in tuple_gram:
+        print(tuple,tuple[0],tuple[1])
+        if int(tuple[1])>30:
+            x.append(tuple[0]) 
+            y.append(tuple[1])
     
     fig = plt.figure(figsize = (20,5))
     plt.bar(x,y)

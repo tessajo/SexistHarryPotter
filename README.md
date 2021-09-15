@@ -26,6 +26,12 @@ The data basis is all seven Harry Potter in ebook-format.
 - [x] save filtered and all sentences to files
 - [ ] sentence tokenizer to get individual sentences for the entire text
 # Analysis
+- [ ] frequenz analyse
+- [ ] funktion wieder auslagern in eval functions
+- [ ] legende für wortfrequenzen
+- [ ] wordnetze für unigramme
+
+
 - [ ] tba
 - [ ] werden die pos tags für die sätze richtig erzeugt
 - [ ] nicht nach pos tags, sondern nach wortlisten filtern
