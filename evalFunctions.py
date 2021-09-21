@@ -29,9 +29,9 @@ def removal(x,fv):
             res.append(pair)
     return res
 
-def createwordmatrix(word,seq,lseq,unigram,i):
+def createWordMatrix(word,seq,lseq,unigram,i):
     if not lseq==i:
-        createwordmatrix(word,seq,lseq-1,unigram,i)
+        createWordMatrix(word,seq,lseq-1,unigram,i)
     if not word==seq[lseq]:
         unigram.append(word)
         unigram.append(seq[lseq])
@@ -51,7 +51,7 @@ def unigram(sents):
         toktext.append(sequence)
     return toktext,unigram
 
-def unigrammatrix(sents):
+def unigramMatrix(sents):
     punct = ['“','”','–','’','‘','—','…']
     unigram = []
     # toktext = []
@@ -62,12 +62,12 @@ def unigrammatrix(sents):
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
-            createwordmatrix(word,sequence,lseq,unigram,i)
+            createWordMatrix(word,sequence,lseq,unigram,i)
             i += 1
     return unigram
 
 # ngram-Funktion mit POS definieren
-def ngramfilter(unigram,all:bool,names:bool,ad:bool):
+def ngramFilter(unigram,all:bool,names:bool,ad:bool):
     unigramall = ['Harry','Potter']
     unigramnames = []
     unigramad = []
@@ -93,7 +93,7 @@ def ngramfilter(unigram,all:bool,names:bool,ad:bool):
                 unigramad.append(word[0])
     return unigramall,unigramnames,unigramad
 
-def initngrams(unigram):
+def initNgrams(unigram):
     # N-Grams
     bigram = [] # Kontext (2 Worte) wird beachtet
     trigram = []
@@ -102,7 +102,7 @@ def initngrams(unigram):
     sixgram = []
 
     # Filterwerte ermitteln
-    fv = getfiltervalues(1,0,0)
+    fv = getFilterValues(1,0,0,0,0)
 
     # n-Grame erstellen 
     bigram.extend(list(ngrams(unigram, 2)))
@@ -131,53 +131,80 @@ def initngrams(unigram):
     # print('freq_four',freq_four.most_common(20),'\n')
     # print('freq_five',freq_five.most_common(20),'\n')
     # print('freq_six',freq_six.most_common(20),'\n')
-    return freq_uni
+    return freq_uni,bigram
 
-def getwordfrequency(unigram): # TODO
+def getWordFrequency(unigram): # TODO
+    # Variablendeklaration
     x = []
     y = []
-    print(unigram)
+    color = []
+    gram_pos = nltk.pos_tag(unigram)
+    counter = 0
+    c_noun = "green" 
+    c_adv = "yellow"
+    c_adj = "red"
+    c_none = "blue"
+    legend = ['Nomen','Adverb','Adjektiv','Andere']
     # Ergebnisse
-    print('freq_uni',unigram.most_common(100),'\n')
+    # print('freq_uni',unigram.most_common(100),'\n')
     tuple_gram = unigram.most_common(100)
     for tuple in tuple_gram:
-        print(tuple,tuple[0],tuple[1])
-        if int(tuple[1])>30:
+        # if int(tuple[1])>30:
             x.append(tuple[0]) 
             y.append(tuple[1])
+            if gram_pos[counter][1] in ['NN','NNS','NNP']:
+                color.append(c_noun)
+            elif gram_pos[counter][1] in ['JJ','JJR','JJS']:
+                color.append(c_adv)
+            elif gram_pos[counter][1] in ['RB','RBR','RBS']:
+                color.append(c_adj)
+            else:
+                color.append(c_none)
+            counter += 1
     
     fig = plt.figure(figsize = (20,5))
-    plt.bar(x,y)
-    plt.title("Worthäufigkeiten", loc = 'left')
+    plt.bar(x,y,color = color)
+    plt.title("Worthäufigkeiten")
     plt.xlabel("Wort")
     plt.ylabel("Frequenz")
     plt.xticks(rotation=90)
+    plt.figlegend([1,2,3,4],labels = legend,labelcolor=[c_noun,c_adv,c_adj,c_none]) # TODO Legende definieren
     plt.show()
 
-def getfiltervalues(n,adv,adj):
+def getFilterValues(n,adv,adj,female,male):
     names = []
     adverbs = []
     adjectives = []
-    res = []
+    female = []
+    male = []
     if n==1:
         with open(os.path.join('Data','pos','names.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
-            names.append(key)
+            names.append(key.lower())
     if adv==1:
-        with open(os.path.join('Data','pos','adverb.json'),'r',encoding='utf-8') as f:
+        with open(os.path.join('Data','pos','adverbs.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
-            adverbs.append(key)
+            adverbs.append(key.lower())
     if adj==1:
         with open(os.path.join('Data','pos','adjectives.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
-            adjectives.append(key)
-    res.extend(names)
-    res.extend(adverbs)
-    res.extend(adjectives)  
-    return res
+            adjectives.append(key.lower())
+    if female==1:
+        with open(os.path.join('Data','pos','adjectives.json'),'r',encoding='utf-8') as f:
+            content = f.read().replace('\xad','')
+        n = json.loads(content)
+        for key in n.keys():
+            female.append(key.lower())
+    if male==1:
+        with open(os.path.join('Data','pos','male.json'),'r',encoding='utf-8') as f:
+            content = f.read().replace('\xad','')
+        n = json.loads(content)
+        for key in n.keys():
+            male.append(key.lower())
+    return names,adverbs,adjectives,female,male
