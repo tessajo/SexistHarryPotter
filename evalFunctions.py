@@ -171,7 +171,8 @@ def getWordFrequency(unigram): # TODO
     plt.figlegend([1,2,3,4],labels = legend,labelcolor=[c_noun,c_adv,c_adj,c_none]) # TODO Legende definieren
     plt.show()
 
-def getFilterValues(n,adv,adj,female,male):
+def getFilterValues(n:bool,adv:bool,adj:bool,female_n:bool,male_n:bool):
+    # List var should have different name to boolean
     names = []
     adverbs = []
     adjectives = []
@@ -195,13 +196,13 @@ def getFilterValues(n,adv,adj,female,male):
         n = json.loads(content)
         for key in n.keys():
             adjectives.append(key.lower())
-    if female==1:
-        with open(os.path.join('Data','pos','adjectives.json'),'r',encoding='utf-8') as f:
+    if female_n==1:
+        with open(os.path.join('Data','pos','female.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
             female.append(key.lower())
-    if male==1:
+    if male_n==1:
         with open(os.path.join('Data','pos','male.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
