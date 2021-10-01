@@ -68,15 +68,17 @@ def unigramMatrix(sents):
 
 # ngram-Funktion mit POS definieren
 def ngramFilter(unigram,all:bool,names:bool,ad:bool):
-    unigramall = ['Harry','Potter']
+    unigramall = []
     unigramnames = []
     unigramad = []
     # POS Tags ermitteln
     sequence = nltk.pos_tag(unigram)
     if all==True:
         for word in sequence:
-            if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']: # Nomen, Adverben, Adjektive
-                unigramall.append(word[0])
+            # if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']:
+            if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']: # Nomen, Adverben, Adjektive
+                if len(unigramall)==0 or word[0]!=unigramall[-1]:
+                    unigramall.append(word[0])
     if names==True: 
         names = []
         with open(os.path.join('Data','pos','names.json'),'r',encoding='utf-8') as f:
@@ -85,12 +87,16 @@ def ngramFilter(unigram,all:bool,names:bool,ad:bool):
             for key in n.keys():
                 names.append(key)
         for word in sequence:
-            if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word in names: # Adverben, Adjektive
-                unigramnames.append(word[0])
+            # if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word in names: # Adverben, Adjektive
+            if word[0] in names: # Adverben, Adjektive
+                if len(unigramnames)==0 or word[0]!=unigramnames[-1]:
+                    unigramnames.append(word[0])
     if ad==True:
         for word in sequence:
-            if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
-                unigramad.append(word[0])
+            # if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
+            if word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
+                if len(unigramad)==0 or word[0]!=unigramad[-1]:
+                    unigramad.append(word[0])
     return unigramall,unigramnames,unigramad
 
 def initNgrams(unigram):
