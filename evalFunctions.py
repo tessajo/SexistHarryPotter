@@ -54,7 +54,7 @@ def unigram(sents):
 def unigramMatrix(sents):
     punct = ['“','”','–','’','‘','—','…']
     unigram = []
-    # toktext = []
+    l_names = getFilterValues(1,0,0,0,0)
     for sentence in sents:
         sentence = ''.join([char for char in sentence if (char not in string.punctuation) and (char not in punct)])
         sentence = sentence.lower()
@@ -62,7 +62,10 @@ def unigramMatrix(sents):
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
-            createWordMatrix(word,sequence,lseq,unigram,i)
+            print(word)
+            if word in l_names:
+                print(word)
+                createWordMatrix(word,sequence,lseq,unigram,i)
             i += 1
     return unigram
 
