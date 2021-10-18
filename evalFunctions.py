@@ -75,7 +75,6 @@ def ngramFilter(unigram,all:bool,names:bool,ad:bool):
     sequence = nltk.pos_tag(unigram)
     if all==True:
         for word in sequence:
-            # if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']:
             if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS']: # Nomen, Adverben, Adjektive
                 if len(unigramall)==0 or word[0]!=unigramall[-1]:
                     unigramall.append(word[0])
@@ -87,13 +86,11 @@ def ngramFilter(unigram,all:bool,names:bool,ad:bool):
             for key in n.keys():
                 names.append(key)
         for word in sequence:
-            # if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word in names: # Adverben, Adjektive
             if word[0] in names: # Adverben, Adjektive
                 if len(unigramnames)==0 or word[0]!=unigramnames[-1]:
                     unigramnames.append(word[0])
     if ad==True:
         for word in sequence:
-            # if (not word[0]==unigramall[-1] or len(unigramall)==0) and word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
             if word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
                 if len(unigramad)==0 or word[0]!=unigramad[-1]:
                     unigramad.append(word[0])
@@ -174,7 +171,7 @@ def getWordFrequency(unigram): # TODO
     plt.xlabel("Wort")
     plt.ylabel("Frequenz")
     plt.xticks(rotation=90)
-    plt.figlegend([1,2,3,4],labels = legend,labelcolor=[c_noun,c_adv,c_adj,c_none]) # TODO Legende definieren
+    # plt.figlegend([1,2,3,4],labels = legend,labelcolor=[c_noun,c_adv,c_adj,c_none]) # TODO Legende definieren
     plt.show()
 
 def getFilterValues(n:bool,adv:bool,adj:bool,female_n:bool,male_n:bool):
