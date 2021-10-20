@@ -31,6 +31,7 @@ def removal(x,fv):
     return res
 
 def createWordMatrix(word,seq,lseq,unigram,i):
+    print(lseq,i)
     if not lseq==i:
         createWordMatrix(word,seq,lseq-1,unigram,i)
     if not word==seq[lseq]:
@@ -63,7 +64,6 @@ def unigramMatrix(sents):
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
-            print(word)
             if word in l_names:
                 print(word)
                 createWordMatrix(word,sequence,lseq,unigram,i)
@@ -168,7 +168,6 @@ def getWordFrequency(unigram): # TODO
             else:
                 color.append(c_none)
             counter += 1
-    
     fig = plt.figure(figsize = (20,5))
     plt.bar(x,y,color = color)
     plt.title("Worthäufigkeiten")
@@ -180,6 +179,7 @@ def getWordFrequency(unigram): # TODO
 
 def getFilterValues(n:bool,adv:bool,adj:bool,female_n:bool,male_n:bool):
     # List var should have different name to boolean
+    res = []
     names = []
     adverbs = []
     adjectives = []
@@ -191,28 +191,33 @@ def getFilterValues(n:bool,adv:bool,adj:bool,female_n:bool,male_n:bool):
         n = json.loads(content)
         for key in n.keys():
             names.append(key.lower())
+    res += names
     if adv==1:
         with open(os.path.join('Data','pos','adverbs.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
             adverbs.append(key.lower())
+    res += adverbs
     if adj==1:
         with open(os.path.join('Data','pos','adjectives.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
             adjectives.append(key.lower())
+    res += adjectives
     if female_n==1:
         with open(os.path.join('Data','pos','female.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
             female.append(key.lower())
+    res += female
     if male_n==1:
         with open(os.path.join('Data','pos','male.json'),'r',encoding='utf-8') as f:
             content = f.read().replace('\xad','')
         n = json.loads(content)
         for key in n.keys():
             male.append(key.lower())
-    return names,adverbs,adjectives,female,male
+    res += male
+    return res
