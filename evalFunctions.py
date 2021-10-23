@@ -61,6 +61,7 @@ def unigramMatrix(sents):
         sentence = ''.join([char for char in sentence if (char not in string.punctuation) and (char not in punct)])
         sentence = sentence.lower()
         sequence = nltk.word_tokenize(sentence)
+        print(sequence)
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
