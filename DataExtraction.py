@@ -118,43 +118,25 @@ def getSentences():
     for key in n.keys():
         names.append(key.lower())
     # Adjektive und Adverben auslesen
-    '''
-    # Variablen definieren
-    adjectives = []
-    with open(os.path.join('Data','pos','adjectives.json'),'r',encoding='utf-8') as f:
-        content = f.read().replace('\xad','')
-        n = json.loads(content)
-        for key in n.keys():
-            adjectives.append(key)
-    adverbs = []
-    with open(os.path.join('Data','pos','adverbs.json'),'r',encoding='utf-8') as f:
-        content = f.read().replace('\xad','')
-        n = json.loads(content)
-        for key in n.keys():
-            adverbs.append(key) '''
     # Alle Texte auslesen
-    with open(os.path.join('Data','REFINED','master.txt'),'r',encoding='utf-8') as f:
-        content = f.read().replace('\xad','') 
-    # Sätze unterteilen
-    sentences = nltk.sent_tokenize(content,language='english')
-    # Variablen definieren
-    filtered_text = ''
-    text = ''
-    # Dateien erstellen
-    if not os.path.exists(os.path.join('Data','RESULTS','allsentences.txt')) and not os.path.exists(os.path.join('Data','RESULTS','sentenceswithnames.txt')):
-        with open(os.path.join('Data','RESULTS','sentenceswithnames.txt'),'w',encoding='utf-8') as f:
-            f.write('')        
-        with open(os.path.join('Data','RESULTS','allsentences.txt'),'w',encoding='utf-8') as f:
-            f.write('')
-    for sentence in sentences:
-        seq = nltk.word_tokenize(sentence.lower())
-        l_seq = len(seq)-1
-        filtered_text += findWordInSentence(sentence,seq,names,l_seq)
-        text += sentence + '\n\n'
-    with open(os.path.join('Data','RESULTS','sentenceswithnames.txt'),'a',encoding='utf-8') as f:
-        f.write(filtered_text) 
-    with open(os.path.join('Data','RESULTS','allsentences.txt'),'a',encoding='utf-8') as f:
-        f.write(text)
+    for i in range(0,7):
+        filename = 'sentenceswithnames'+str(i)+'.txt'
+        with open(os.path.join('Data','REFINED',str(i)+'.txt'),'r',encoding='utf-8') as f:
+            content = f.read().replace('\xad','') 
+        # Sätze unterteilen
+        sentences = nltk.sent_tokenize(content,language='english')
+        # Variablen definieren
+        filtered_text = ''
+        # Dateien erstellen
+        if os.path.exists(os.path.join('Data','RESULTS',filename)):
+            with open(os.path.join('Data','RESULTS',filename),'w',encoding='utf-8') as f:
+                f.write('')
+        for sentence in sentences:
+            seq = nltk.word_tokenize(sentence.lower())
+            l_seq = len(seq)-1
+            filtered_text += findWordInSentence(sentence,seq,names,l_seq)
+        with open(os.path.join('Data','RESULTS',filename),'a',encoding='utf-8') as f:
+            f.write(filtered_text)
 
 def findWordInSentence(sentence,seq,comparison:list,i):
     if seq[i] in comparison:
