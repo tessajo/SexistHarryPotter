@@ -31,7 +31,7 @@ def removal(x,fv):
     return res
 
 def createWordMatrix(word,seq,lseq,unigram,i):
-    print(lseq,i)
+    # print(lseq,i)
     if not lseq==i:
         createWordMatrix(word,seq,lseq-1,unigram,i)
     if not word==seq[lseq]:
@@ -53,20 +53,21 @@ def unigram(sents):
         toktext.append(sequence)
     return toktext,unigram
 
-def unigramMatrix(sents):
+def unigramMatrix(sents:list):
+    print('start')
     punct = ['“','”','–','’','‘','—','…']
     unigram = []
     l_names = getFilterValues(1,0,0,0,0)
+    print('sentences')
     for sentence in sents:
-        sentence = ''.join([char for char in sentence if (char not in string.punctuation) and (char not in punct)])
-        sentence = sentence.lower()
+        print(len(sentence))
         sequence = nltk.word_tokenize(sentence)
-        print(sequence)
+        # print(sequence)
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
             if word in l_names:
-                print(word)
+                # print(word)
                 createWordMatrix(word,sequence,lseq,unigram,i)
             i += 1
     return unigram
