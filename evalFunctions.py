@@ -83,13 +83,13 @@ def ngramFilter(unigram):
     with open(os.path.join('Data','pos','names.json'),'r',encoding='utf-8') as f:
         content = f.read().replace('\xad','')
         n = json.loads(content)
-        for key in n.keys():
-            names.append(key)
+    for key in n.keys():
+        names.append(key)
     '''if all==True:'''
-        for word in sequence:
-            if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS'] or word[0] in names: # Nomen, Adverben, Adjektive
-                if len(unigramall)==0 or word[0]!=unigramall[-1]:
-                    unigramall.append(word[0])
+    for word in sequence:
+        if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS'] or word[0] in names: # Nomen, Adverben, Adjektive
+            if len(unigramall)==0 or word[0]!=unigramall[-1]:
+                unigramall.append(word[0])
     '''if names==True: 
         names = []
         for word in sequence:
@@ -106,35 +106,35 @@ def ngramFilter(unigram):
 def initNgrams(unigram):
     # N-Grams
     bigram = [] # Kontext (2 Worte) wird beachtet
-    trigram = []
+    '''trigram = []
     fourgram = []
     fivegram = []
     sixgram = []
-
+    '''
     # Filterwerte ermitteln
     fv = getFilterValues(1,0,0,0,0)
 
     # n-Grame erstellen 
     bigram.extend(list(ngrams(unigram, 2)))
-    trigram.extend(list(ngrams(unigram, 3)))
+    '''trigram.extend(list(ngrams(unigram, 3)))
     fourgram.extend(list(ngrams(unigram, 4)))
     fivegram.extend(list(ngrams(unigram, 5)))
     sixgram.extend(list(ngrams(unigram, 6)))
-    
+    '''
     unigram = removal(unigram,fv)
-    bigram = removal(bigram,fv)
+    '''bigram = removal(bigram,fv)
     trigram = removal(trigram,fv)
     fourgram = removal(fourgram,fv)
     fivegram = removal(fivegram,fv)
     sixgram = removal(sixgram,fv)
-    
+    '''
     freq_uni = nltk.FreqDist(unigram)
     freq_bi = nltk.FreqDist(bigram)
-    freq_tri = nltk.FreqDist(trigram)
+    '''freq_tri = nltk.FreqDist(trigram)
     freq_four = nltk.FreqDist(fourgram)
     freq_five = nltk.FreqDist(fivegram)
     freq_six = nltk.FreqDist(sixgram)
-
+    '''
     # print('freq_uni',freq_uni.most_common(100),'\n')
     # print('freq_bi',freq_bi.most_common(20),'\n')
     # print('freq_tri',freq_tri.most_common(20),'\n')
