@@ -224,4 +224,4 @@ def getFilterValues(n:bool,adv:bool,adj:bool,female_n:bool,male_n:bool):
         for key in n.keys():
             male.append(key.lower())
     res += male
-    return names,adverbs,adjectives,female,male,res
+    return names, adverbs, adjectives, female, male, res

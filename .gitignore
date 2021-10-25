@@ -1,6 +1,7 @@
 # Sensitive data
 /Archive
 /Data
+# Pythondatei
 test.py
 
 # Byte-compiled / optimized / DLL files
