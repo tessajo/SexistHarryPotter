@@ -101,7 +101,8 @@ def ngramFilter(unigram):
             if word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
                 if len(unigramad)==0 or word[0]!=unigramad[-1]:
                     unigramad.append(word[0])
-    return unigramall,unigramnames,unigramad'''
+    '''
+    return unigramall #,unigramnames,unigramad
 
 def initNgrams(unigram):
     # N-Grams
@@ -223,4 +224,4 @@ def getFilterValues(n:bool,adv:bool,adj:bool,female_n:bool,male_n:bool):
         for key in n.keys():
             male.append(key.lower())
     res += male
-    return res
+    return names,adverbs,adjectives,female,male,res
