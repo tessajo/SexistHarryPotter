@@ -54,23 +54,24 @@ def unigram(sents):
     return toktext,unigram
 
 def unigramMatrix(sents:list):
-    print('start')
+    # print('start')
     punct = ['“','”','–','’','‘','—','…']
     unigram = []
-    l_names = getFilterValues(1,0,0,0,0)
+    l_names, adverbs, adjectives, female, male, res = getFilterValues(1,0,0,0,0)
     # print('sentences')
+    # print(l_names)
     for sentence in sents:
-        print(len(sentence))
+        # print(len(sentence))
         sequence = nltk.word_tokenize(sentence)
-        print(sequence)
+        # print(sequence) # funktionuggelt
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
             if word in l_names:
                 # print(word)
-                unigram = createWordMatrix(word,sequence,lseq,unigram,i)
+                createWordMatrix(word,sequence,lseq,unigram,i)
             i += 1
-    print('finished book')
+    # print(unigram)
     return unigram
 
 # ngram-Funktion mit POS definieren
@@ -87,7 +88,8 @@ def ngramFilter(unigram):
         names.append(key)
     '''if all==True:'''
     for word in sequence:
-        if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS'] or word[0] in names: # Nomen, Adverben, Adjektive
+        # if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS'] or word[0] in names: # Nomen, Adverben, Adjektive
+        if word[1] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word[0] in names: # Nomen, Adverben, Adjektive
             if len(unigramall)==0 or word[0]!=unigramall[-1]:
                 unigramall.append(word[0])
     '''if names==True: 
