@@ -54,21 +54,21 @@ def unigram(sents):
     return toktext,unigram
 
 def unigramMatrix(sents:list):
-    # print('start')
+    print('start')
     punct = ['“','”','–','’','‘','—','…']
     unigram = []
     l_names = getFilterValues(1,0,0,0,0)
     # print('sentences')
     for sentence in sents:
-        # print(len(sentence))
+        print(len(sentence))
         sequence = nltk.word_tokenize(sentence)
-        # print(sequence)
+        print(sequence)
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
             if word in l_names:
                 # print(word)
-                createWordMatrix(word,sequence,lseq,unigram,i)
+                unigram = createWordMatrix(word,sequence,lseq,unigram,i)
             i += 1
     print('finished book')
     return unigram
