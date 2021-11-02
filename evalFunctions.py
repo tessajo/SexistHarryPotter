@@ -176,9 +176,9 @@ def getWordFrequency(unigram): # TODO
             counter += 1
     fig = plt.figure(figsize = (20,5))
     plt.bar(x,y,color = color)
-    plt.title("Worthäufigkeiten")
-    plt.xlabel("Wort")
-    plt.ylabel("Frequenz")
+    plt.title("Wordfrequencies")
+    plt.xlabel("Word")
+    plt.ylabel("Frequency")
     plt.xticks(rotation=90)
     # plt.figlegend([1,2,3,4],labels = legend,labelcolor=[c_noun,c_adv,c_adj,c_none]) # TODO Legende definieren
     plt.show()
