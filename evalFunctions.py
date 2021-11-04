@@ -5,11 +5,7 @@ from nltk.util import ngrams
 import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
 
-#Funktionen definieren
-
-punct = ['“','”','–','’','‘','—','…']
-
-# removal-Funktion definieren
+# Removal-Funktion
 def removal(x,fv):
     stop_words = set(stopwords.words('english'))
     # Stopwörter entfernen
@@ -30,8 +26,8 @@ def removal(x,fv):
             res.append(pair)
     return res
 
+# Rekursive Matrix-Funktion
 def createWordMatrix(word,seq,lseq,unigram,i):
-    # print(lseq,i)
     if not lseq==i:
         createWordMatrix(word,seq,lseq-1,unigram,i)
     if not word==seq[lseq]:
@@ -39,10 +35,10 @@ def createWordMatrix(word,seq,lseq,unigram,i):
         unigram.append(seq[lseq])
     return unigram
 
-# ngram-Funktion definieren
+# Erstellen eines Unigrams und ein tokenisierter Text
 def unigram(sents):
     punct = ['“','”','–','’','‘','—','…']
-    unigram = [] # nur das Wort wird beachtet
+    unigram = []
     toktext = []
     for sentence in sents:
         sentence = ''.join([char for char in sentence if (char not in string.punctuation) and (char not in punct)])
@@ -53,29 +49,20 @@ def unigram(sents):
         toktext.append(sequence)
     return toktext,unigram
 
+# Erstellung eines Matrix-Unigrams
 def unigramMatrix(sents:list):
-    # print('start')
-    punct = ['“','”','–','’','‘','—','…']
     unigram = []
     l_names, adverbs, adjectives, female, male, res = getFilterValues(1,0,0,0,0)
-    # print('sentences')
-    # print(l_names)
     for sentence in sents:
-        # print(len(sentence))
         sequence = nltk.word_tokenize(sentence)
-        # print(sequence) # funktionuggelt
         lseq = len(sequence)-1
         i = 0
         for word in sequence:
             if word in l_names:
-                # print(word)
                 createWordMatrix(word,sequence,lseq,unigram,i)
             i += 1
-    # print(unigram)
     return unigram
 
-# ngram-Funktion mit POS definieren
-# def ngramFilter(unigram,all:bool,names:bool,ad:bool):
 def ngramFilter(unigram):
     unigramall = []
     # POS Tags ermitteln
@@ -86,64 +73,24 @@ def ngramFilter(unigram):
         n = json.loads(content)
     for key in n.keys():
         names.append(key)
-    '''if all==True:'''
     for word in sequence:
-        # if word[1] in ['NN','NNS','NNP','JJ','JJR','JJS','RB','RBR','RBS'] or word[0] in names: # Nomen, Adverben, Adjektive
         if word[1] in ['JJ','JJR','JJS','RB','RBR','RBS'] or word[0] in names: # Nomen, Adverben, Adjektive
             if len(unigramall)==0 or word[0]!=unigramall[-1]:
                 unigramall.append(word[0])
-    '''if names==True: 
-        names = []
-        for word in sequence:
-            if word[0] in names: # Adverben, Adjektive
-                if len(unigramnames)==0 or word[0]!=unigramnames[-1]:
-                    unigramnames.append(word[0])
-    if ad==True:
-        for word in sequence:
-            if word[1] in ['JJ','JJR','JJS','RB','RBR','RBS']: # Adverben, Adjektive
-                if len(unigramad)==0 or word[0]!=unigramad[-1]:
-                    unigramad.append(word[0])
-    '''
-    return unigramall #,unigramnames,unigramad
+    return unigramall
 
 def initNgrams(unigram):
-    # N-Grams
-    bigram = [] # Kontext (2 Worte) wird beachtet
-    '''trigram = []
-    fourgram = []
-    fivegram = []
-    sixgram = []
-    '''
+    # Variable erstellen
+    bigram = []
     # Filterwerte ermitteln
     fv = getFilterValues(1,0,0,0,0)
-
     # n-Grame erstellen 
     bigram.extend(list(ngrams(unigram, 2)))
-    '''trigram.extend(list(ngrams(unigram, 3)))
-    fourgram.extend(list(ngrams(unigram, 4)))
-    fivegram.extend(list(ngrams(unigram, 5)))
-    sixgram.extend(list(ngrams(unigram, 6)))
-    '''
+    # Removal-Funktion anwenden
     unigram = removal(unigram,fv)
-    '''bigram = removal(bigram,fv)
-    trigram = removal(trigram,fv)
-    fourgram = removal(fourgram,fv)
-    fivegram = removal(fivegram,fv)
-    sixgram = removal(sixgram,fv)
-    '''
+    # FreqDist berechnen
     freq_uni = nltk.FreqDist(unigram)
     freq_bi = nltk.FreqDist(bigram)
-    '''freq_tri = nltk.FreqDist(trigram)
-    freq_four = nltk.FreqDist(fourgram)
-    freq_five = nltk.FreqDist(fivegram)
-    freq_six = nltk.FreqDist(sixgram)
-    '''
-    # print('freq_uni',freq_uni.most_common(100),'\n')
-    # print('freq_bi',freq_bi.most_common(20),'\n')
-    # print('freq_tri',freq_tri.most_common(20),'\n')
-    # print('freq_four',freq_four.most_common(20),'\n')
-    # print('freq_five',freq_five.most_common(20),'\n')
-    # print('freq_six',freq_six.most_common(20),'\n')
     return freq_uni,bigram
 
 def getWordFrequency(unigram): # TODO
@@ -159,32 +106,29 @@ def getWordFrequency(unigram): # TODO
     c_none = "blue"
     legend = ['Nomen','Adverb','Adjektiv','Andere']
     # Ergebnisse
-    # print('freq_uni',unigram.most_common(100),'\n')
     tuple_gram = unigram.most_common(100)
     for tuple in tuple_gram:
-        # if int(tuple[1])>30:
-            x.append(tuple[0]) 
-            y.append(tuple[1])
-            if gram_pos[counter][1] in ['NN','NNS','NNP']:
-                color.append(c_noun)
-            elif gram_pos[counter][1] in ['JJ','JJR','JJS']:
-                color.append(c_adv)
-            elif gram_pos[counter][1] in ['RB','RBR','RBS']:
-                color.append(c_adj)
-            else:
-                color.append(c_none)
-            counter += 1
+        x.append(tuple[0]) 
+        y.append(tuple[1])
+        if gram_pos[counter][1] in ['NN','NNS','NNP']:
+            color.append(c_noun)
+        elif gram_pos[counter][1] in ['JJ','JJR','JJS']:
+            color.append(c_adv)
+        elif gram_pos[counter][1] in ['RB','RBR','RBS']:
+            color.append(c_adj)
+        else:
+            color.append(c_none)
+        counter += 1
     fig = plt.figure(figsize = (20,5))
     plt.bar(x,y,color = color)
     plt.title("Wordfrequencies")
     plt.xlabel("Word")
     plt.ylabel("Frequency")
     plt.xticks(rotation=90)
-    # plt.figlegend([1,2,3,4],labels = legend,labelcolor=[c_noun,c_adv,c_adj,c_none]) # TODO Legende definieren
     plt.show()
 
+# Funktion zum Ermitteln von Filter-werten
 def getFilterValues(n:bool,adv:bool,adj:bool,female_n:bool,male_n:bool):
-    # List var should have different name to boolean
     res = []
     names = []
     adverbs = []
