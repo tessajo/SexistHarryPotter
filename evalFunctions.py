@@ -91,7 +91,8 @@ def initNgrams(unigram):
     # FreqDist berechnen
     freq_uni = nltk.FreqDist(unigram)
     freq_bi = nltk.FreqDist(bigram)
-    return freq_uni,bigram
+    len_bi = len(freq_bi)
+    return freq_uni,freq_bi.most_common(len_bi)
 
 def getWordFrequency(unigram): # TODO
     # Variablendeklaration
