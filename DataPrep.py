@@ -6,17 +6,11 @@ import os
 # Path ermitteln
 path = os.path.join('Archive')
 files = os.listdir(path)
-# print(files)
 
 for i in range(0,len(files)):
 
     fpath = os.path.join('Archive',files[i])
     book = epub.read_epub(fpath)
-    # print(book)
-    # print(book.get_metadata('DC','identifier'))'
-    # print(book.get_metadata('DC','title'))
-    # print(book.get_metadata('DC','creator'))
-    # print(book.get_metadata('DC','language'))
     
     path = os.path.join('Data','RAW')
     if os.path.exists(path):

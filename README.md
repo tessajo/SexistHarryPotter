@@ -1,38 +1,7 @@
 # SexistHarryPotter
 
-# Data Preparation
-The data basis is all seven Harry Potter in ebook-format. 
-- [x] using ebooklib to get the raw text
-- [x] enrich file with meta data
-- [x] save text in html format in txt file
-- [x] define gitignore
-# Data Cleanup
-- [x] remove html markdown from the raw text using bs html parser
-- [x] remove hidden hyphen
-- [x] cleanup data with regex function
-- [ ] extend regex function if necessary
-- [x] regex function unifying and correcting misspelled names
-- [x] write text to new file
-- [x] create master file containing all 7 books
-- [ ]
-- [ ]
-# Data Extraction
-- [ ] develop data model for future analysis
-- [x] collect relevant data in separate files(names.json,adjectives.json,adverbs.json,female.json,male.json,ambigousnames.json)
-- [x] collect exceptions to be able to reproduce names.json
-- [x] collect descriptors
-- [x] extract sentences containing figure names, adjectives or adverbs
-- [x] sentence tokenizer to get individual sentences for the entire text
-- [x] save filtered and all sentences to files
-- [ ] sentence tokenizer to get individual sentences for the entire text
-# Analysis
-- [ ] frequenz analyse
-- [ ] funktion wieder auslagern in eval functions
-- [ ] legende für wortfrequenzen
-- [ ] wordnetze für unigramme
+SexistHarryPotter is a research project, examining the contents of all seven Harry Potter books.
+The project processes the data and extracts it from ebooks. The contents are then cleaned and preprocessed for further analysis.
+The analysis consists of a statistical and a contentual part. In the statistical analysis, general data on the books is collected. In the contentual analysis ngrams and network graphs are used to examine whether female characters are being described differently than male characters in the books. To examine this, network analysis metrics are applied.
 
-
-- [ ] tba
-- [ ] werden die pos tags für die sätze richtig erzeugt
-- [ ] nicht nach pos tags, sondern nach wortlisten filtern
-- [ ] ngrams nach namen und männliche/weibliche namen filtern
+For further questions, please reach out to tjohnsen@smail.uni-koeln.de .

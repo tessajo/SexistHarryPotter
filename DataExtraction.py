@@ -145,5 +145,3 @@ def findWordInSentence(sentence,seq,comparison:list,i):
         return findWordInSentence(sentence,seq,comparison,i-1)
     else:
         return ''
-
-getSentences()
